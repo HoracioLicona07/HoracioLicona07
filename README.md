@@ -1,385 +1,296 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horacio Licona - GitHub Profile</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #24292e;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .profile-container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin: 20px 0;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #2196F3 0%, #21CBF3 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="60" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-        }
-        
-        .header h1 {
-            margin: 0;
-            font-size: 3em;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header p {
-            margin: 10px 0 0 0;
-            font-size: 1.3em;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .wave {
-            font-size: 2em;
-            animation: wave 2s infinite;
-            display: inline-block;
-        }
-        
-        @keyframes wave {
-            0%, 20%, 60%, 100% { transform: rotate(0deg); }
-            10% { transform: rotate(14deg); }
-            30% { transform: rotate(-8deg); }
-            40% { transform: rotate(14deg); }
-            50% { transform: rotate(-4deg); }
-            70% { transform: rotate(10deg); }
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .section h2 {
-            color: #2196F3;
-            border-bottom: 3px solid #2196F3;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .tech-item {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .tech-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border: 2px solid #2196F3;
-        }
-        
-        .experience-item {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            border-left: 5px solid #2196F3;
-            transition: all 0.3s ease;
-        }
-        
-        .experience-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .experience-item h3 {
-            color: #2196F3;
-            margin: 0 0 10px 0;
-            font-size: 1.3em;
-        }
-        
-        .experience-item .company {
-            font-weight: bold;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        
-        .experience-item .date {
-            color: #888;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-        
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin: 30px 0;
-        }
-        
-        .contact-link {
-            background: #2196F3;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .contact-link:hover {
-            background: #1976D2;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-        }
-        
-        .emoji {
-            font-size: 1.2em;
-        }
-        
-        .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-left: 4px solid #2196F3;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2em; }
-            .header p { font-size: 1.1em; }
-            .content { padding: 20px; }
-            .tech-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
-            .contact-links { flex-direction: column; align-items: center; }
-        }
-    </style>
-</head>
-<body>
-    <div class="profile-container">
-        <div class="header">
-            <h1>¡Hola! <span class="wave">👋</span> Soy Horacio Licona</h1>
-            <p>🚀 Scrum Master | 💻 Full Stack Developer | 🤖 AI Specialist</p>
-        </div>
-        
-        <div class="content">
-            <div class="section">
-                <div class="highlight">
-                    <p><strong>Especialista bilingüe</strong> egresado del <strong>Tecnológico de Monterrey (ITESM)</strong> y próximo a concluir una <strong>Maestría en Administración de Empresas</strong>. Con enfoque en desarrollo Full Stack e Inteligencia Artificial, tengo experiencia coordinando equipos multidisciplinarios bajo marcos ágiles como SCRUM.</p>
-                </div>
-            </div>
+<!-- RAINBOW LINE TOP -->
+<img src="https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif" width="100%">
 
-            <div class="section">
-                <h2><span class="emoji">🔭</span> Actualmente trabajando en</h2>
-                <div class="experience-item">
-                    <h3>Consultor y Desarrollador FullStack IA</h3>
-                    <div class="company">PRACTIA GLOBAL</div>
-                    <div class="date">Enero 2025 - Mayo 2025</div>
-                    <p>Desarrollo Full Stack de webapps usando <strong>Flask (Python)</strong> para el Backend y <strong>React</strong> para el Frontend. APIs REST, sistemas escalables, bases de datos SQL y autenticación con JWT y OAuth2.</p>
-                </div>
-            </div>
+<div align="center">
+  
+# 𝐇𝐞𝐥𝐥𝐨 𝐭𝐡𝐞𝐫𝐞! <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="35">, 𝐈'𝐦 𝐇𝐨𝐫𝐚𝐜𝐢𝐨 𝐋𝐢𝐜𝐨𝐧𝐚
 
-            <div class="section">
-                <h2><span class="emoji">🌱</span> Mi Stack Tecnológico</h2>
-                <div class="tech-grid">
-                    <div class="tech-item">Python</div>
-                    <div class="tech-item">JavaScript</div>
-                    <div class="tech-item">TypeScript</div>
-                    <div class="tech-item">Java</div>
-                    <div class="tech-item">React</div>
-                    <div class="tech-item">Angular</div>
-                    <div class="tech-item">Flask</div>
-                    <div class="tech-item">Django</div>
-                    <div class="tech-item">TensorFlow</div>
-                    <div class="tech-item">PyTorch</div>
-                    <div class="tech-item">Docker</div>
-                    <div class="tech-item">Kafka</div>
-                    <div class="tech-item">PostgreSQL</div>
-                    <div class="tech-item">MySQL</div>
-                    <div class="tech-item">Golang</div>
-                    <div class="tech-item">Spring Boot</div>
-                </div>
-            </div>
+</div>
 
-            <div class="section">
-                <h2><span class="emoji">💼</span> Experiencia Destacada</h2>
-                
-                <div class="experience-item">
-                    <h3>Consultor y Desarrollador FullStack</h3>
-                    <div class="company">FORD MOTOR COMPANY - ALTEN</div>
-                    <div class="date">Agosto 2024 - Enero 2025</div>
-                    <p>Desarrollo de software para pantallas TFT LCD en nuevos modelos de Ford, usando <strong>TypeScript, JavaScript, React</strong> y metodología Scrum.</p>
-                </div>
-                
-                <div class="experience-item">
-                    <h3>Consultor y Desarrollador de IA / FullStack</h3>
-                    <div class="company">PRAXIS GLOBE</div>
-                    <div class="date">Agosto 2022 - Agosto 2024</div>
-                    <p>Lideré equipos técnicos bajo SCRUM, desarrollé microservicios para SPEI usando <strong>Golang y Java</strong>, y creé chatbots con <strong>NLP, TensorFlow, Rasa</strong>.</p>
-                </div>
-            </div>
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com/?font=VT323&size=35&duration=3500&pause=300&color=6A0572&center=true&vCenter=true&width=600&lines=🚀+Scrum+Master+%26+Team+Leader;💻+Full+Stack+Developer;🤖+AI+%26+Machine+Learning+Specialist;🎓+Tec+de+Monterrey+Graduate;⚡+CDMX+Based+Developer;🌟+Building+the+Future+with+Code" alt="Typing SVG" />
+</div>
 
-            <div class="section">
-                <h2><span class="emoji">🚀</span> Proyectos Destacados</h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">🏦</div>
-                        <div>Sistema SPEI</div>
-                        <small>Microservicios bancarios con Golang, Java y Kafka</small>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">🤖</div>
-                        <div>Chatbot IA</div>
-                        <small>NLP con Python, TensorFlow y Rasa</small>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">🚗</div>
-                        <div>Sistema Ford</div>
-                        <small>React + TypeScript para pantallas automotrices</small>
-                    </div>
-                </div>
-            </div>
+<!-- PROFILE VIEWS & FOLLOWERS -->
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=HoracioLicona07&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views" />
+  <img src="https://img.shields.io/github/followers/HoracioLicona07?style=social" alt="GitHub followers" />
+  <img src="https://img.shields.io/github/stars/HoracioLicona07?style=social" alt="GitHub stars" />
+</p>
 
-            <div class="section">
-                <h2><span class="emoji">🎓</span> Certificaciones</h2>
-                <div class="tech-grid">
-                    <div class="tech-item">🏅 SCRUM Master</div>
-                    <div class="tech-item">📋 Product Owner</div>
-                    <div class="tech-item">🧠 Redes Neuronales</div>
-                    <div class="tech-item">🐍 Python Certified</div>
-                    <div class="tech-item">☕ Java Certified</div>
-                    <div class="tech-item">🌐 Django Certified</div>
-                    <div class="tech-item">🗣️ TOEFL C1</div>
-                    <div class="tech-item">🤖 ChatGPT Certified</div>
-                </div>
-            </div>
+<!-- SNAKE ANIMATION -->
+<p align="center">
+  <img src="https://github.com/7oSkaaa/7oSkaaa/blob/output/github-contribution-grid-snake.svg?" alt="Snake Game"/>
+</p>
 
-            <div class="section">
-                <h2><span class="emoji">👯</span> Colaboraciones</h2>
-                <p>🔍 Busco colaborar en proyectos de <strong>Inteligencia Artificial</strong>, <strong>Microservicios</strong> y <strong>desarrollo Full Stack</strong></p>
-                <p>🤝 Especializado en liderar equipos ágiles y facilitar ceremonias SCRUM</p>
-                <p>💡 Interesado en proyectos que combinen <strong>IA, Backend robusto y Frontend moderno</strong></p>
-            </div>
+---
 
-            <div class="section">
-                <h2><span class="emoji">💬</span> Pregúntame sobre</h2>
-                <div class="highlight">
-                    <p>🔹 <strong>Desarrollo Full Stack</strong> con Python, JavaScript, React<br>
-                    🔹 <strong>Inteligencia Artificial</strong> y Machine Learning<br>
-                    🔹 <strong>Metodologías Ágiles</strong> y Scrum Master<br>
-                    🔹 <strong>Microservicios</strong> y arquitecturas escalables<br>
-                    🔹 <strong>Chatbots</strong> y procesamiento de lenguaje natural</p>
-                </div>
-            </div>
+## 🚀 **Acerca de Mí**
 
-            <div class="section">
-                <h2><span class="emoji">📫</span> Contacto</h2>
-                <div class="contact-links">
-                    <a href="mailto:horaciolicona0711@gmail.com" class="contact-link">
-                        📧 Email
-                    </a>
-                    <a href="https://www.linkedin.com/in/horacio-licona-gonz%C3%A1lez-591655212/" class="contact-link">
-                        💼 LinkedIn
-                    </a>
-                    <a href="https://horaciolicona.my.canva.site/portafolio" class="contact-link">
-                        🎨 Portafolio
-                    </a>
-                    <a href="https://horacio-licona-portfolio.onrender.com/" class="contact-link">
-                        🌐 Website
-                    </a>
-                    <a href="https://github.com/HoracioLicona07?tab=repositories" class="contact-link">
-                        💻 GitHub
-                    </a>
-                </div>
-            </div>
+```javascript
+const horacioLicona = {
+    title: "Scrum Master & Full Stack AI Developer",
+    location: "Ciudad de México, México 🇲🇽",
+    education: [
+        "🎓 Ingeniería Mecatrónica - Tecnológico de Monterrey (ITESM)",
+        "📚 MBA en proceso - Tecnológico de Monterrey"
+    ],
+    currentWork: "💼 Consultor y Desarrollador FullStack IA - PRACTIA GLOBAL",
+    specialties: [
+        "🏗️ Arquitectura de Microservicios",
+        "🤖 Inteligencia Artificial & Machine Learning", 
+        "🔄 Metodologías Ágiles (SCRUM)",
+        "💻 Desarrollo Full Stack",
+        "👥 Liderazgo de Equipos Técnicos"
+    ],
+    languages: {
+        spanish: "Nativo 🇪🇸",
+        english: "C1 🇺🇸"
+    },
+    motto: "Transformando ideas en soluciones tecnológicas escalables ⚡"
+};
+```
 
-            <div class="section">
-                <h2><span class="emoji">⚡</span> Datos Curiosos</h2>
-                <p>🌎 Ubicado en <strong>CDMX, México</strong><br>
-                🎓 <strong>Ingeniero Mecatrónico</strong> del Tec de Monterrey<br>
-                🏢 <strong>MBA en proceso</strong> - Tecnológico de Monterrey<br>
-                🗣️ <strong>Bilingüe</strong> - Español/Inglés (C1)<br>
-                🚀 Apasionado por la <strong>innovación tecnológica</strong> y el <strong>liderazgo ágil</strong></p>
-            </div>
-        </div>
-    </div>
+---
 
-    <script>
-        // Animación sutil para las tarjetas
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.tech-item, .experience-item');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            });
+## 🔭 **Actualmente Trabajando En**
+
+- 🚀 **PRACTIA GLOBAL** - Desarrollo Full Stack de webapps con **Flask (Python)** y **React**
+- 🏗️ Construcción de **APIs REST** escalables y sistemas de autenticación **JWT/OAuth2**
+- 🤖 Implementación de soluciones de **Inteligencia Artificial** 
+- 📊 Facilitación de ceremonias **SCRUM** y gestión de equipos ágiles
+
+---
+
+## 🌱 **Mi Stack Tecnológico**
+
+<details>
+<summary>💻 <strong>Lenguajes de Programación</strong></summary>
+<br>
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java"/>
+  <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Golang"/>
+  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++"/>
+  <img src="https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white" alt="R"/>
+</p>
+</details>
+
+<details>
+<summary>🚀 <strong>Frontend & UI</strong></summary>
+<br>
+<p align="left">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
+  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular"/>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma"/>
+</p>
+</details>
+
+<details>
+<summary>⚡ <strong>Backend & APIs</strong></summary>
+<br>
+<p align="left">
+  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
+  <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django"/>
+  <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot"/>
+  <img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=apache-kafka&logoColor=white" alt="Kafka"/>
+  <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" alt="JWT"/>
+</p>
+</details>
+
+<details>
+<summary>🤖 <strong>IA & Machine Learning</strong></summary>
+<br>
+<p align="left">
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow"/>
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch"/>
+  <img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white" alt="Keras"/>
+  <img src="https://img.shields.io/badge/Rasa-5A17EE?style=for-the-badge&logo=rasa&logoColor=white" alt="Rasa"/>
+  <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-learn"/>
+</p>
+</details>
+
+<details>
+<summary>🗄️ <strong>Bases de Datos</strong></summary>
+<br>
+<p align="left">
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+  <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL"/>
+  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="SQL Server"/>
+</p>
+</details>
+
+<details>
+<summary>🛠️ <strong>DevOps & Herramientas</strong></summary>
+<br>
+<p align="left">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git"/>
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+  <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=jira&logoColor=white" alt="Jira"/>
+  <img src="https://img.shields.io/badge/SolidWorks-FF0000?style=for-the-badge&logo=solidworks&logoColor=white" alt="SolidWorks"/>
+</p>
+</details>
+
+---
+
+## 💼 **Experiencia Profesional**
+
+### 🚀 **PRACTIA GLOBAL** | *Enero 2025 - Mayo 2025*
+**Consultor y Desarrollador FullStack IA**
+- 🔧 Desarrollo Full Stack con **Flask (Python)** y **React**
+- 🌐 Diseño e implementación de **APIs REST** escalables
+- 🔐 Sistemas de autenticación con **JWT** y **OAuth2**
+- 🐳 Despliegue con **Docker** y metodologías **SCRUM**
+
+### 🚗 **FORD MOTOR COMPANY - ALTEN** | *Agosto 2024 - Enero 2025*
+**Consultor y Desarrollador FullStack**
+- 📱 Desarrollo de software para pantallas **TFT LCD** en automóviles Ford
+- ⚛️ Stack: **TypeScript**, **JavaScript**, **React**
+- 🎨 Diseño frontend con **HTML**, **CSS** y **Figma**
+- 🔄 Metodología **SCRUM** para integración hardware-software
+
+### 🏢 **PRAXIS GLOBE** | *Agosto 2022 - Agosto 2024*
+**Consultor y Desarrollador de IA / FullStack**
+- 👥 **Liderazgo de equipos técnicos** bajo marco **SCRUM**
+- 🏦 Desarrollo de microservicios para **Sistema SPEI** con **Golang** y **Java**
+- 🤖 Creación del **chatbot oficial** de la compañía con **NLP**, **TensorFlow** y **Rasa**
+- 🔧 Integración con **Apache Kafka**, **Spring Boot**, **Angular** y **React**
+
+---
+
+## 🏆 **GitHub Trophies**
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=HoracioLicona07&theme=dracula&column=7" alt="GitHub Trophies" />
+</p>
+
+---
+
+## 📊 **Estadísticas de GitHub**
+
+<div align="center">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=HoracioLicona07&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=HoracioLicona07&layout=compact&langs_count=8&theme=dracula"/>
+</div>
+
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=HoracioLicona07&theme=dracula" alt="GitHub Streak" />
+</div>
+
+---
+
+## 🚀 **Proyectos Destacados**
+
+<div align="center">
+
+| 🏦 **Sistema SPEI** | 🤖 **Chatbot IA** | 🚗 **Sistema Ford** |
+|:---:|:---:|:---:|
+| Microservicios bancarios | NLP & Conversacional | Pantallas automotrices |
+| `Golang` `Java` `Kafka` | `Python` `TensorFlow` `Rasa` | `React` `TypeScript` |
+
+</div>
+
+---
+
+## 🎓 **Certificaciones & Educación**
+
+<p align="center">
+  <img src="https://img.shields.io/badge/🏅_SCRUM_Master-Certified-brightgreen?style=for-the-badge" alt="Scrum Master"/>
+  <img src="https://img.shields.io/badge/📋_Product_Owner-Certified-blue?style=for-the-badge" alt="Product Owner"/>
+  <img src="https://img.shields.io/badge/🧠_Neural_Networks-Certified-red?style=for-the-badge" alt="Neural Networks"/>
+  <img src="https://img.shields.io/badge/🐍_Python-Certified-yellow?style=for-the-badge" alt="Python"/>
+  <img src="https://img.shields.io/badge/☕_Java-Certified-orange?style=for-the-badge" alt="Java"/>
+  <img src="https://img.shields.io/badge/🗣️_TOEFL_C1-Certified-purple?style=for-the-badge" alt="TOEFL"/>
+</p>
+
+---
+
+## 👯 **Busco Colaborar En**
+
+- 🤖 **Proyectos de Inteligencia Artificial** y Machine Learning
+- 🏗️ **Arquitecturas de Microservicios** escalables
+- 🔄 **Implementación de metodologías ágiles** en equipos de desarrollo
+- 💻 **Desarrollo Full Stack** con tecnologías modernas
+- 🤝 **Proyectos Open Source** que generen impacto
+
+---
+
+## 💬 **Pregúntame Sobre**
+
+```yaml
+expertise:
+  - 🏗️ "Arquitectura de Microservicios y sistemas distribuidos"
+  - 🤖 "Desarrollo de Chatbots y procesamiento de lenguaje natural"
+  - 🔄 "Implementación de SCRUM y liderazgo de equipos ágiles"
+  - 💻 "Full Stack Development con Python, JavaScript y React"
+  - 🚀 "Integración de IA en aplicaciones web modernas"
+  - 📊 "Optimización de procesos de desarrollo y DevOps"
+```
+
+---
+
+## 📫 **Conecta Conmigo**
+
+<div align="center">
+  
+[![Email](https://img.shields.io/badge/Email-horaciolicona0711@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:horaciolicona0711@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Horacio_Licona-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/horacio-licona-gonz%C3%A1lez-591655212/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white)](https://horaciolicona.my.canva.site/portafolio)
+[![Website](https://img.shields.io/badge/Website-Portfolio-FF6B6B?style=for-the-badge&logo=web&logoColor=white)](https://horacio-licona-portfolio.onrender.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-HoracioLicona07-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/HoracioLicona07?tab=repositories)
+[![Phone](https://img.shields.io/badge/Phone-+52_55_6977_2999-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](tel:+525569772999)
+
+</div>
+
+---
+
+## ⚡ **Fun Facts**
+
+- 🌎 Ubicado en **Ciudad de México, México**
+- 🎓 **Ingeniero Mecatrónico** del prestigioso **Tec de Monterrey**
+- 📚 Próximo a obtener **MBA** del Tecnológico de Monterrey
+- 🗣️ **Bilingüe** certificado (Español/Inglés C1)
+- 🚀 Apasionado por la **innovación tecnológica** y el **liderazgo ágil**
+- 🎯 Enfocado en crear **soluciones que transformen el futuro**
+
+---
+
+<div align="center">
+  <img src="https://readme-jokes.vercel.app/api?theme=dracula" alt="Dev Joke" />
+</div>
+
+---
+
+<div align="center">
+  
+**"Código limpio no es escrito por seguir un conjunto de reglas. Sabes que has escrito código limpio cuando cada rutina que lees resulta ser más o menos lo que esperabas."** 
+<br>
+*- Robert C. Martin (Uncle Bob)*
+
+</div>
+
+<!-- RAINBOW LINE BOTTOM -->
+<img src="https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif" width="100%">
+
+---
+
+<div align="center">
+  
+*📍 Desarrollando el futuro desde Ciudad de México* 🇲🇽<br>
+*Last updated: June 2025* ⚡
+
+**¡Gracias por visitar mi perfil!** 😊
+
+</div>
+
+---
+
+**Credit:** [HoracioLicona07](https://github.com/HoracioLicona07)<br>
+**Last Edited on:** 19/06/2025
 
             cards.forEach(card => {
                 card.style.opacity = '0';
